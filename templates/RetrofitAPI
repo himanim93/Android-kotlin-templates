@@ -1,0 +1,11 @@
+
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}#end
+
+import retrofit2.Response
+import retrofit2.http.*
+
+interface ${NAME}API {
+    @Headers("Content-Type: application/json")
+    @GET(${URL})
+    suspend fun getList(): Response<${NAME}>
+}

@@ -1,0 +1,21 @@
+
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}#end
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import ${PACKAGE_NAME}.Resource
+
+class ${NAME}ViewModel(private val repository: ${NAME}Repository) : ViewModel() {
+
+    private val _getValuesResult = MutableLiveData<Resource<${NAME}>>()
+    val getValuesResult: LiveData<Resource<${NAME}>> = _getValuesResult
+    var errorMsg = MutableLiveData<String>()
+
+    fun getList() = viewModelScope.launch {
+          repository.getList().collect {
+              _getValuesResult.value = it
+          }
+      }
+}

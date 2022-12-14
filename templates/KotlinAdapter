@@ -1,0 +1,40 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}#end
+
+#parse("File Header.java")
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import java.util.*
+import androidx.recyclerview.widget.RecyclerView
+import android.content.Context
+
+class ${NAME}(
+private val arrayList: MutableList<${MODEL_NAME}>
+) : RecyclerView.Adapter<${NAME}.${VIEWHOLDER_NAME}>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ${VIEWHOLDER_NAME} {
+        return ${VIEWHOLDER_NAME}(
+        ${ITEM_BINDING_NAME}.inflate(
+        LayoutInflater.from(parent.context),
+        parent,
+        false
+    )
+        )
+    }
+
+    override fun onBindViewHolder(holder: ${VIEWHOLDER_NAME}, position: Int) {
+        holder.bind(arrayList[position])
+    }
+
+    override fun getItemCount(): Int {
+        return arrayList.size
+    }
+
+    class ${VIEWHOLDER_NAME}(
+    private val itemBinding: ${ITEM_BINDING_NAME}
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
+        fun bind(data: ${MODEL_NAME}) {
+        }
+    }
+}
